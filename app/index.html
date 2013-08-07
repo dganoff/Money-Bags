@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="utf-8">
+  <title>Budget App</title>
+  <link rel="stylesheet" href="css/foundation.css"/>
+</head>
+<body>
+    <section ng-controller="ExpensesCtrl">
+
+        <div class="row">
+            <div class="large-12 columns">
+                <h1>Budget</h1>
+                <table width="100%">
+                    <thead>
+                        <tr>
+                            <th ng-click="changeFilter('name')">Name</th>
+                            <th ng-click="changeFilter('amount')">Amount</th>
+                            <th width="20"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="expense in expenses | orderBy:filter">
+                            <td>
+                                {{expense.name}}
+                            </td>
+                            <td>
+                                ${{expense.amount}}
+                            </td>
+                            <td>
+                                <a ng-click="deleteExpense(expense)"><i class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                <strong>Total:</strong>
+                            </td>
+                            <td>
+                                <strong>${{total()}}</strong>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <form ng-submit="addExpense()">
+                <div class="large-4 columns">
+                    <input ng-model="expenseName" type="text" placeholder="Name">
+                </div>
+                <div class="large-4 columns">
+                    <input ng-model="expenseAmount" type="number" placeholder="Amount">
+                </div>
+                <div class="large-4 columns">
+                    <input type="submit" value="Add Expense" class="button expand">
+                </div>
+            </form>
+        </div>
+
+    </section>
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  -->
+  <script src="lib/angular/angular.js"></script>
+  <script src="js/expenses.js"></script>
+</body>
+</html>

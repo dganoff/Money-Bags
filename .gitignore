@@ -1,0 +1,3 @@
+logs/*
+app/.sass-cache/*
+!.gitkeep
