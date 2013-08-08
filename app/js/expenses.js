@@ -5,7 +5,7 @@ function ExpensesCtrl($scope) {
 		{name: "Mortgage", amount: 1500}
 	];
 
-	$scope.income = [];
+	$scope.income = undefined;
 
 	$scope.addExpense = function() {
 		$scope.expenses.push({
@@ -41,5 +41,43 @@ function ExpensesCtrl($scope) {
 	     	sum += +v.amount;
 	    }
 	    return sum;
+	};
+
+	$scope.year = {
+		months: [
+			'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+		],
+		getMonthExpenses: function() {
+			var monthExpenses = $scope.total()/$scope.year.months.length;
+			return monthExpenses;
+		},
+		getMonthNet: function() {
+			var net = $scope.income - $scope.total();
+			return net;
+		},
+		getMonthNetClass: function() {
+			var className;
+			if ($scope.year.getMonthNet() > 0) {
+				className = 'green';
+			} else if ($scope.year.getMonthNet() < 0) {className = 'red';}
+			return className;
+		},
+		getYearlySavings: function() {
+			for (var i = 0; i < myStringArray.length; i++) {
+			    alert(myStringArray[i]);
+			    //Do something
+			}
+		}
 	};
 }

@@ -9515,3 +9515,126 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
 .icon-renren:before {
   content: "\f18b";
 }
+
+/**
+/* Mixins:
+*/
+@-webkit-keyframes flipIn {
+  /* line 2, ../scss/_animations.scss */
+  0% {
+    -webkit-transform: rotateX(90deg) translateY(-22px);
+    -moz-transform: rotateX(90deg) translateY(-22px);
+    -ms-transform: rotateX(90deg) translateY(-22px);
+    -o-transform: rotateX(90deg) translateY(-22px);
+    transform: rotateX(90deg) translateY(-22px);
+  }
+
+  /* line 9, ../scss/_animations.scss */
+  100% {
+    -webkit-transform: rotateX(0deg) translateY(0px);
+    -moz-transform: rotateX(0deg) translateY(0px);
+    -ms-transform: rotateX(0deg) translateY(0px);
+    -o-transform: rotateX(0deg) translateY(0px);
+    transform: rotateX(0deg) translateY(0px);
+  }
+}
+
+@-moz-keyframes flipIn {
+  /* line 2, ../scss/_animations.scss */
+  0% {
+    -webkit-transform: rotateX(90deg) translateY(-22px);
+    -moz-transform: rotateX(90deg) translateY(-22px);
+    -ms-transform: rotateX(90deg) translateY(-22px);
+    -o-transform: rotateX(90deg) translateY(-22px);
+    transform: rotateX(90deg) translateY(-22px);
+  }
+
+  /* line 9, ../scss/_animations.scss */
+  100% {
+    -webkit-transform: rotateX(0deg) translateY(0px);
+    -moz-transform: rotateX(0deg) translateY(0px);
+    -ms-transform: rotateX(0deg) translateY(0px);
+    -o-transform: rotateX(0deg) translateY(0px);
+    transform: rotateX(0deg) translateY(0px);
+  }
+}
+
+@-ms-keyframes flipIn {
+  /* line 2, ../scss/_animations.scss */
+  0% {
+    -webkit-transform: rotateX(90deg) translateY(-22px);
+    -moz-transform: rotateX(90deg) translateY(-22px);
+    -ms-transform: rotateX(90deg) translateY(-22px);
+    -o-transform: rotateX(90deg) translateY(-22px);
+    transform: rotateX(90deg) translateY(-22px);
+  }
+
+  /* line 9, ../scss/_animations.scss */
+  100% {
+    -webkit-transform: rotateX(0deg) translateY(0px);
+    -moz-transform: rotateX(0deg) translateY(0px);
+    -ms-transform: rotateX(0deg) translateY(0px);
+    -o-transform: rotateX(0deg) translateY(0px);
+    transform: rotateX(0deg) translateY(0px);
+  }
+}
+
+@-o-keyframes flipIn {
+  /* line 2, ../scss/_animations.scss */
+  0% {
+    -webkit-transform: rotateX(90deg) translateY(-22px);
+    -moz-transform: rotateX(90deg) translateY(-22px);
+    -ms-transform: rotateX(90deg) translateY(-22px);
+    -o-transform: rotateX(90deg) translateY(-22px);
+    transform: rotateX(90deg) translateY(-22px);
+  }
+
+  /* line 9, ../scss/_animations.scss */
+  100% {
+    -webkit-transform: rotateX(0deg) translateY(0px);
+    -moz-transform: rotateX(0deg) translateY(0px);
+    -ms-transform: rotateX(0deg) translateY(0px);
+    -o-transform: rotateX(0deg) translateY(0px);
+    transform: rotateX(0deg) translateY(0px);
+  }
+}
+
+@keyframes flipIn {
+  /* line 2, ../scss/_animations.scss */
+  0% {
+    -webkit-transform: rotateX(90deg) translateY(-22px);
+    -moz-transform: rotateX(90deg) translateY(-22px);
+    -ms-transform: rotateX(90deg) translateY(-22px);
+    -o-transform: rotateX(90deg) translateY(-22px);
+    transform: rotateX(90deg) translateY(-22px);
+  }
+
+  /* line 9, ../scss/_animations.scss */
+  100% {
+    -webkit-transform: rotateX(0deg) translateY(0px);
+    -moz-transform: rotateX(0deg) translateY(0px);
+    -ms-transform: rotateX(0deg) translateY(0px);
+    -o-transform: rotateX(0deg) translateY(0px);
+    transform: rotateX(0deg) translateY(0px);
+  }
+}
+
+/* line 1, ../scss/_expenses.scss */
+.expense-col-header {
+  cursor: pointer;
+}
+
+/* line 5, ../scss/_expenses.scss */
+.green {
+  color: green;
+}
+
+/* line 7, ../scss/_expenses.scss */
+.red {
+  color: red;
+}
+
+/* line 1, ../scss/_year.scss */
+.year-table {
+  font-size: 12px;
+}

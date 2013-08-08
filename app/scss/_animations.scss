@@ -1,0 +1,16 @@
+@include keyframes(flipIn) {
+	0% {
+		-webkit-transform: rotateX(90deg) translateY(-22px);
+		-moz-transform: rotateX(90deg) translateY(-22px);
+		-ms-transform: rotateX(90deg) translateY(-22px);
+		-o-transform: rotateX(90deg) translateY(-22px);
+		transform: rotateX(90deg) translateY(-22px);
+	}
+	100% {
+		-webkit-transform: rotateX(0deg) translateY(0px);
+		-moz-transform: rotateX(0deg) translateY(0px);
+		-ms-transform: rotateX(0deg) translateY(0px);
+		-o-transform: rotateX(0deg) translateY(0px);
+		transform: rotateX(0deg) translateY(0px);
+	}
+}
