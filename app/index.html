@@ -11,6 +11,7 @@
         <div class="row">
             <div class="large-12 columns">
                 <h1>Monthly Budget</h1>
+                <a ng-click="saveExpenses()">Save</a>
             </div>
         </div>
 
@@ -107,6 +108,12 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-12 columns">
+                <h2>Yearly Savings: ${{year.getYearlySavings() | number:2}}</h2>
             </div>
         </div>
 
