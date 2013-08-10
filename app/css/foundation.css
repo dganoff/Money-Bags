@@ -9634,6 +9634,23 @@ a .icon-rotate-90:before, a .icon-rotate-180:before, a .icon-rotate-270:before, 
   color: red;
 }
 
+/* line 9, ../scss/_expenses.scss */
+.expense-amount {
+  width: 100px !important;
+  margin: 0 !important;
+  border: 1px solid transparent !important;
+  background: transparent !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+  font-weight: bold !important;
+  text-align: right;
+}
+/* line 20, ../scss/_expenses.scss */
+.expense-amount:focus {
+  border: 1px solid #ccc !important;
+}
+
 /* line 1, ../scss/_year.scss */
 .year-table {
   font-size: 12px;

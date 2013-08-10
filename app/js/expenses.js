@@ -1,17 +1,20 @@
 function ExpensesCtrl($scope) {
 	$scope.saveExpenses = function() {
-		// localStorage["budget.income"] = $scope.income;
-		localStorage["budget.income"] = undefined;
-		console.log('Local storage: budget.income = ' + localStorage["budget.income"]);
+		localStorage["budget.income"] = $scope.income;
+
+		localStorage["budget.expenses"] = JSON.stringify($scope.expenses);
+
+		localStorage["budget.oneTimeExpenses"] = JSON.stringify($scope.oneTimeExpenses);
 	};
 
-	$scope.expenses = [
-		{name: "Food", amount: 1000},
-		{name: "Internet", amount: 150},
-		{name: "Mortgage", amount: 1500}
-	];
+	$scope.expenses = JSON.parse(localStorage["budget.expenses"]);
+	// $scope.expenses = [
+	// 	{name: "Food", amount: 1000},
+	// 	{name: "Internet", amount: 150},
+	// 	{name: "Mortgage", amount: 1500}
+	// ];
 
-	$scope.income = localStorage["budget.income"];
+	$scope.income = localStorage["budget.income"] ? parseInt(localStorage["budget.income"]) : [];
 
 	$scope.addExpense = function() {
 		$scope.expenses.push({
@@ -19,16 +22,19 @@ function ExpensesCtrl($scope) {
 			amount: $scope.expenseAmount
 		});
 
+		$scope.saveExpenses();
+
 		$scope.expenseName = '';
 		$scope.expenseAmount = '';
 	};
 
 	$scope.deleteExpense = function(idx) {
-		console.log(idx);
 		var index = $scope.expenses.indexOf(idx);
 	    if (index != -1) {
 	        $scope.expenses.splice(index, 1);
 	    }
+
+	    $scope.saveExpenses();
 	}
 
 	$scope.filter = "amount";
@@ -47,6 +53,22 @@ function ExpensesCtrl($scope) {
 	     	sum += +v.amount;
 	    }
 	    return sum;
+	};
+
+	$scope.oneTimeExpenses = localStorage["budget.oneTimeExpenses"] ? JSON.parse(localStorage["budget.oneTimeExpenses"]) : [];
+
+	$scope.addOneTimeExpense = function() {
+		$scope.oneTimeExpenses.push({
+			name: $scope.oneTimeExpenseName,
+			amount: $scope.oneTimeExpenseAmount,
+			month: $scope.oneTimeExpenseMonth
+		});
+
+		$scope.saveExpenses();
+
+		$scope.oneTimeExpenseName = undefined;
+		$scope.oneTimeExpenseAmount = undefined;
+		$scope.oneTimeExpenseMonth = undefined;
 	};
 
 	$scope.year = {
