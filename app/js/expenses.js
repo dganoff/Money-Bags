@@ -7,14 +7,9 @@ function ExpensesCtrl($scope) {
 		localStorage["budget.oneTimeExpenses"] = JSON.stringify($scope.oneTimeExpenses);
 	};
 
-	$scope.expenses = JSON.parse(localStorage["budget.expenses"]);
-	// $scope.expenses = [
-	// 	{name: "Food", amount: 1000},
-	// 	{name: "Internet", amount: 150},
-	// 	{name: "Mortgage", amount: 1500}
-	// ];
+	$scope.expenses = localStorage["budget.expenses"] ? JSON.parse(localStorage["budget.expenses"]) : [];
 
-	$scope.income = localStorage["budget.income"] ? parseInt(localStorage["budget.income"]) : [];
+	$scope.income = localStorage["budget.income"] ? parseInt(localStorage["budget.income"]) : 0;
 
 	$scope.addExpense = function() {
 		$scope.expenses.push({
@@ -24,8 +19,8 @@ function ExpensesCtrl($scope) {
 
 		$scope.saveExpenses();
 
-		$scope.expenseName = '';
-		$scope.expenseAmount = '';
+		$scope.expenseName = undefined;
+		$scope.expenseAmount = undefined;
 	};
 
 	$scope.deleteExpense = function(idx) {
