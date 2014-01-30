@@ -1,4 +1,4 @@
-function ExpensesCtrl($scope) {
+app.controller('ExpensesCtrl', ['$scope', function($scope) {
 	$scope.saveExpenses = function() {
 		localStorage["budget.income"] = $scope.income;
 
@@ -108,4 +108,4 @@ function ExpensesCtrl($scope) {
 			return total;
 		}
 	};
-}
+}]);

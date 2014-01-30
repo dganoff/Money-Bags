@@ -1,3 +1,5 @@
 logs/*
-app/.sass-cache/*
+.sass-cache/*
 !.gitkeep
+dist/*
+node_modules
