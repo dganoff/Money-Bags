@@ -42,11 +42,18 @@ app.controller('ExpensesCtrl', ['$scope', function($scope) {
 		}
 	};
 
-	$scope.total = function() {
+	$scope.total = function(month) {
 		var sum = 0;
 	    for (var i = 0, v; v = $scope.expenses[i]; i++) {
 	     	sum += +v.amount;
 	    }
+
+	    for (var x =0; x < $scope.oneTimeExpenses.length; x++) {
+			if ($scope.oneTimeExpenses[x].month == month) {
+				sum += $scope.oneTimeExpenses[x].amount;
+			}
+		}
+
 	    return sum;
 	};
 
@@ -65,6 +72,15 @@ app.controller('ExpensesCtrl', ['$scope', function($scope) {
 		$scope.oneTimeExpenseAmount = undefined;
 		$scope.oneTimeExpenseMonth = undefined;
 	};
+
+	$scope.deleteOneTimeExpense = function(idx) {
+		var index = $scope.oneTimeExpenses.indexOf(idx);
+	    if (index != -1) {
+	        $scope.oneTimeExpenses.splice(index, 1);
+	    }
+
+	    $scope.saveExpenses();
+	}
 
 	$scope.year = {
 		months: [
@@ -86,25 +102,25 @@ app.controller('ExpensesCtrl', ['$scope', function($scope) {
 			var monthExpenses = $scope.total()/$scope.year.months.length;
 			return monthExpenses;
 		},
-		getMonthNet: function() {
+		getMonthNet: function(month) {
 			// console.log('running function: getMonthNet');
-			var net = $scope.income - $scope.total();
+			var net = $scope.income - $scope.total(month);
 			return net;
 		},
-		getMonthNetClass: function() {
+		getMonthNetClass: function(month) {
 			// console.log('running function: getMonthNetClass');
 			var className;
-			if ($scope.year.getMonthNet() > 0) {
+			if ($scope.year.getMonthNet(month) > 0) {
 				className = 'green';
-			} else if ($scope.year.getMonthNet() < 0) {className = 'red';}
+			} else if ($scope.year.getMonthNet(month) < 0) {className = 'red';}
 			return className;
 		},
 		getYearlySavings: function() {
 			// console.log('running function: getYearlySavings');
-			var total = $scope.year.getMonthNet() * $scope.year.months.length;
-			// for (var i = 0; i < $scope.year.months.length; i++) {
-			// }
-			console.log(total);
+			var total = 0;
+			for (var i = 0; i < $scope.year.months.length; i++) {
+				total += $scope.year.getMonthNet($scope.year.months[i]);
+			}
 			return total;
 		}
 	};
