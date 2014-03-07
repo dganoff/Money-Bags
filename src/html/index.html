@@ -45,8 +45,85 @@
 		</div>
 
 		<div class="row">
+
+			<div class="large-6 columns">
+				<div class="row">
+					<div class="large-12 columns">
+						<h3>Monthly Income: {{income | currency}}</h3>
+					</div>
+				</div>
+
+				<div class="row collapse">
+					<div class="large-2 columns">
+						<span class="prefix">Income:</span>
+					</div>
+					<div class="large-10 columns">
+						<input type="number" ng-model="income" ng-change="saveExpenses()" placeholder="Your Income" value="{{income}}" pattern="[0-9]">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="large-12 columns">
+						<h3>One-Time Expenses</h3>
+
+						<div class="row collapse">
+							<form ng-submit="addOneTimeExpense()">
+								<div class="large-4 columns">
+									<input ng-model="oneTimeExpenseName" type="text" placeholder="Name">
+								</div>
+								<div class="large-3 columns">
+									<input ng-model="oneTimeExpenseAmount" type="number" placeholder="Amount">
+								</div>
+								<div class="large-3 columns">
+									<select ng-model="oneTimeExpenseMonth" ng-options="month for month in year.months"></select>
+								</div>
+								<div class="large-2 columns">
+									<input type="submit" value="Add" class="button postfix">
+								</div>
+							</form>
+						</div>
+
+						<table width="100%">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Amount</th>
+									<th>Month</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="oneTimeExpense in oneTimeExpenses">
+									<td>{{oneTimeExpense.name}}</td>
+									<td>
+										<input type="number" ng-model="oneTimeExpense.amount" ng-change="saveExpenses()" value="{{oneTimeExpense.amount}}" class="expense-amount">
+									</td>
+									<td>
+										<select ng-model="oneTimeExpense.month" ng-options="month for month in year.months"></select>
+									</td>
+									<td><a ng-click="deleteOneTimeExpense(oneTimeExpense)"><i class="icon-trash"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
 			<div class="large-6 columns">
 				<h3>Monthly Expenses: {{total() | currency}}</h3>
+				<div class="row collapse">
+					<form ng-submit="addExpense()">
+						<div class="large-5 columns">
+							<input ng-model="expenseName" type="text" placeholder="Name">
+						</div>
+						<div class="large-5 columns">
+							<input ng-model="expenseAmount" type="number" placeholder="Amount">
+						</div>
+						<div class="large-2 columns">
+							<input type="submit" value="Add" class="button postfix">
+						</div>
+					</form>
+				</div>
 				<table width="100%">
 					<thead>
 						<tr>
@@ -78,82 +155,6 @@
 						</tr>
 					</tbody>
 				</table>
-				<div class="row collapse">
-					<form ng-submit="addExpense()">
-						<div class="large-5 columns">
-							<input ng-model="expenseName" type="text" placeholder="Name">
-						</div>
-						<div class="large-5 columns">
-							<input ng-model="expenseAmount" type="number" placeholder="Amount">
-						</div>
-						<div class="large-2 columns">
-							<input type="submit" value="Add" class="button postfix">
-						</div>
-					</form>
-				</div>
-			</div>
-
-			<div class="large-6 columns">
-				<div class="row">
-					<div class="large-12 columns">
-						<h3>Monthly Income: {{income | currency}}</h3>
-					</div>
-				</div>
-
-				<div class="row collapse">
-					<div class="large-2 columns">
-						<span class="prefix">Income:</span>
-					</div>
-					<div class="large-10 columns">
-						<input type="number" ng-model="income" ng-change="saveExpenses()" placeholder="Your Income" value="{{income}}" pattern="[0-9]">
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="large-12 columns">
-						<h3>One-Time Expenses</h3>
-
-						<table width="100%">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Amount</th>
-									<th>Month</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="oneTimeExpense in oneTimeExpenses">
-									<td>{{oneTimeExpense.name}}</td>
-									<td>
-										<input type="number" ng-model="oneTimeExpense.amount" ng-change="saveExpenses()" value="{{oneTimeExpense.amount}}" class="expense-amount">
-									</td>
-									<td>
-										<select ng-model="oneTimeExpense.month" ng-options="month for month in year.months"></select>
-									</td>
-									<td><a ng-click="deleteOneTimeExpense(oneTimeExpense)"><i class="icon-trash"></i></a></td>
-								</tr>
-							</tbody>
-						</table>
-
-						<div class="row collapse">
-							<form ng-submit="addOneTimeExpense()">
-								<div class="large-4 columns">
-									<input ng-model="oneTimeExpenseName" type="text" placeholder="Name">
-								</div>
-								<div class="large-3 columns">
-									<input ng-model="oneTimeExpenseAmount" type="number" placeholder="Amount">
-								</div>
-								<div class="large-3 columns">
-									<select ng-model="oneTimeExpenseMonth" ng-options="month for month in year.months"></select>
-								</div>
-								<div class="large-2 columns">
-									<input type="submit" value="Add" class="button postfix">
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 
