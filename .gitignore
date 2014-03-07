@@ -3,3 +3,4 @@ logs/*
 !.gitkeep
 dist/*
 node_modules
+.grunt/*
