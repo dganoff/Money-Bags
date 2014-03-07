@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en" id="ng-app" ng-app="MoneyBags">
+<head>
+  <meta charset="utf-8">
+  <title>Budget App</title>
+  <link rel="stylesheet" href="css/foundation.css"/>
+</head>
+<body>
+	<section ng-controller="ExpensesCtrl">
+
+		<div class="row">
+			<div class="large-12 columns">
+				<h1>Money Bags</h1>
+				<h4>Yearly Savings: ${{year.getYearlySavings() | number:2}}</h4>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-12 columns">
+				<table width="100%" class="year-table">
+					<thead>
+						<tr>
+							<th></th>
+							<th ng-repeat="month in year.months">{{month}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<strong>Expenses:</strong>
+							</td>
+							<td ng-repeat="month in year.months">{{total(month) | currency}}</td>
+						</tr>
+						<tr>
+							<td>
+								<strong>Savings:</strong>
+							</td>
+							<td ng-repeat="month in year.months">
+								<strong><span class="{{year.getMonthNetClass(month)}}">${{year.getMonthNet(month) | number:2}}</span></strong>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="row">
+
+			<div class="large-6 columns">
+				<div class="row">
+					<div class="large-12 columns">
+						<h3>Monthly Income: {{income | currency}}</h3>
+					</div>
+				</div>
+
+				<div class="row collapse">
+					<div class="large-2 columns">
+						<span class="prefix">Income:</span>
+					</div>
+					<div class="large-10 columns">
+						<input type="number" ng-model="income" ng-change="saveExpenses()" placeholder="Your Income" value="{{income}}" pattern="[0-9]">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="large-12 columns">
+						<h3>One-Time Expenses</h3>
+
+						<div class="row collapse">
+							<form ng-submit="addOneTimeExpense()">
+								<div class="large-4 columns">
+									<input ng-model="oneTimeExpenseName" type="text" placeholder="Name">
+								</div>
+								<div class="large-3 columns">
+									<input ng-model="oneTimeExpenseAmount" type="number" placeholder="Amount">
+								</div>
+								<div class="large-3 columns">
+									<select ng-model="oneTimeExpenseMonth" ng-options="month for month in year.months"></select>
+								</div>
+								<div class="large-2 columns">
+									<input type="submit" value="Add" class="button postfix">
+								</div>
+							</form>
+						</div>
+
+						<table width="100%">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Amount</th>
+									<th>Month</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="oneTimeExpense in oneTimeExpenses">
+									<td>{{oneTimeExpense.name}}</td>
+									<td>
+										<input type="number" ng-model="oneTimeExpense.amount" ng-change="saveExpenses()" value="{{oneTimeExpense.amount}}" class="expense-amount">
+									</td>
+									<td>
+										<select ng-model="oneTimeExpense.month" ng-options="month for month in year.months"></select>
+									</td>
+									<td><a ng-click="deleteOneTimeExpense(oneTimeExpense)"><i class="icon-trash"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div class="large-6 columns">
+				<h3>Monthly Expenses: {{total() | currency}}</h3>
+				<div class="row collapse">
+					<form ng-submit="addExpense()">
+						<div class="large-5 columns">
+							<input ng-model="expenseName" type="text" placeholder="Name">
+						</div>
+						<div class="large-5 columns">
+							<input ng-model="expenseAmount" type="number" placeholder="Amount">
+						</div>
+						<div class="large-2 columns">
+							<input type="submit" value="Add" class="button postfix">
+						</div>
+					</form>
+				</div>
+				<table width="100%">
+					<thead>
+						<tr>
+							<th ng-click="changeFilter('name')" class="expense-col-header">Name</th>
+							<th ng-click="changeFilter('amount')" class="expense-col-header text-right">Amount</th>
+							<th width="20"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="expense in expenses | orderBy:filter" class="expense-row">
+							<td>
+								{{expense.name}}
+							</td>
+							<td align="right">
+								<input type="number" ng-model="expense.amount" ng-change="saveExpenses()" value="{{expense.amount}}" class="expense-amount">
+							</td>
+							<td>
+								<a ng-click="deleteExpense(expense)"><i class="icon-trash"></i></a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<strong>Total:</strong>
+							</td>
+							<td align="right">
+								<strong>{{total() | currency}}</strong>
+							</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</section><!-- end ExpensesCtrl controller -->
+
+	<script src="js/angular.min.js"></script>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>-->
+	<script src="js/app.min.js"></script>
+</body>
+</html>
