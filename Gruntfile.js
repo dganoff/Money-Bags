@@ -153,7 +153,13 @@ module.exports = function(grunt) {
     			files: SRC + 'img/*',
     			tasks: 'copy:img'
     		}
-        }
+        },
+        'gh-pages': {
+            options: {
+                base: 'dist'
+            },
+            src: ['**']
+        },
     });
 
     // Load Tasks:
@@ -162,4 +168,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', ['connect', 'watch']);
     grunt.registerTask('build', ['copy', 'uglify', 'sass']);
+    grunt.registerTask('pages', ['build', 'gh-pages']);
 }
